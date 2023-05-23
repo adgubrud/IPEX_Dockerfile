@@ -66,6 +66,8 @@ RUN export PATH=~/anaconda3/bin/:${PATH} && \
     pip3 install https://download.pytorch.org/whl/nightly/cpu/torch-2.1.0.dev20230518%2Bcpu-cp39-cp39-linux_x86_64.whl --no-deps
 
 # Build IPEX
+COPY onednn_91fbb8cf5_brgemm.patch /opt/installs
+COPY onednn_91fbb8cf5_ip.patch /opt/installs
 RUN source /root/anaconda3/bin/activate llm && \
     pip install mkl intel-openmp && \
     cd /opt/installs && git clone -b master  https://github.com/intel/intel-extension-for-pytorch.git ipex-cpu && \
