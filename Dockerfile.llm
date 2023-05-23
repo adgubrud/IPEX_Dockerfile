@@ -105,8 +105,13 @@ RUN /root/anaconda3/bin/conda clean -y -all && \
 
 ENV BASH_ENV=/opt/.bash_profile
 # Env config
-ENV KMP_BLOCKTIME=1
-ENV KMP_AFFINITY="granularity=fine,compact,1,0"
+export KMP_BLOCKTIME=INF
+export KMP_TPAUSE=0
+export KMP_SETTINGS=1
+export KMP_AFFINITY=granularity=fine,compact,1,0
+export KMP_FORJOIN_BARRIER_PATTERN=dist,dist
+export KMP_PLAIN_BARRIER_PATTERN=dist,dist
+export KMP_REDUCTION_BARRIER_PATTERN=dist,dist
 # IOMP & TcMalloc
 ENV LD_PRELOAD=/root/anaconda3/envs/llm/lib/libiomp5.so:/root/anaconda3/envs/llm/lib/libtcmalloc.so:${LD_PRELOAD}
 WORKDIR /root/workspace/
