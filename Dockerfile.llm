@@ -70,10 +70,14 @@ RUN source /root/anaconda3/bin/activate llm && \
     pip install mkl intel-openmp && \
     cd /opt/installs && git clone -b master  https://github.com/intel/intel-extension-for-pytorch.git ipex-cpu && \
     cd /opt/installs/ipex-cpu && git checkout de88d93 && git submodule sync && git submodule update --init --recursive && \
+    cd /third_party/ideep && git checkout e2cd8d5f46970ef2fcbcf0191f7859ed77e23b15 && git submodule update --init --recursive && \
+    cd - &&
     export DNNL_GRAPH_BUILD_COMPILER_BACKEND=1 && \
     source /opt/rh/gcc-toolset-11/enable && \
     rm -rf /root/anaconda3/lib/libstdc++.so* && \
     rm -rf /root/anaconda3/envs/llm/lib/libstdc++.so* && \
+    git apply /opt/installs/onednn_91fbb8cf5_brgemm.patch && \
+    git apply /opt/installs/onednn_91fbb8cf5_ip.patch && \    
     python setup.py install
 
 # Build TPP extension for Pytorch
