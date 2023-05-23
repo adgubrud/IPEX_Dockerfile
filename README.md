@@ -14,9 +14,10 @@ We provide the `Dockerfile.llm` used for building docker image with PyTorch, IPE
 ## HW ENV
 ### Enable Adaptive Multipath Prefetcher (AMP)
 #### Option 1: Use `msr-tools`
-1. Install msr-tools
+1. Install msr-tools (e.g. `yum install msr-tools`)
 2. Check your default setting to reset once done: `rdmsr 0x1a4`
 3. Enable AMP: `wrmsr -a 0x1a4 0x00`
+4. (optional) restore default value from step 2
 
 #### Option 2: Use BIOS
 1. TBD
