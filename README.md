@@ -12,15 +12,16 @@ We provide the `Dockerfile.llm` used for building docker image with PyTorch, IPE
 - **IPEX-CPU**: master branch, commit [de88d93](https://github.com/intel/intel-extension-for-pytorch/commit/de88d938c940da06274ce64079e93d6aefcaa49d)
 
 ## HW ENV
-### Enable Adaptive Multipath Prefetcher (AMP)
+### Enable Adaptive Multipath Prefetcher (AMP) And Homeless Prefetcher
 #### Option 1: Use `msr-tools`
 1. Install msr-tools (e.g. `yum install msr-tools`)
-2. Check your default setting to reset once done: `rdmsr 0x1a4`
+2. Check your default setting to reset once done: `rdmsr 0x1a4` `rdmsr 0x6d`
 3. Enable AMP: `wrmsr -a 0x1a4 0x00`
-4. (optional) After running performace test, restore default value from step 2
+4. Enable Homeless Prefetcher: `wrmsr -a 0x6d 040040008000`
+5. (optional) After running performace test, restore default value from step 2
 
 #### Option 2: Use BIOS
-1. TBD
+
 
 ## Build Docker image
 - Option 1 (default): you could use `docker build` to build the docker image in your environment.
