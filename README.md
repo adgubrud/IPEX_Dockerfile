@@ -21,7 +21,11 @@ We provide the `Dockerfile.llm` used for building docker image with PyTorch, IPE
 5. (optional) After running performace test, restore default value from step 2
 
 #### Option 2: Use BIOS
-
+![bios1](doc/bios1.png)
+![bios2](doc/bios2.png)
+![bios3](doc/bios3.png)
+![bios4](doc/bios4.png)
+![bios5](doc/bios5.png)
 
 ## Build Docker image
 - Option 1 (default): you could use `docker build` to build the docker image in your environment.
